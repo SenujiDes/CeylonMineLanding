@@ -285,14 +285,14 @@ const Team: React.FC = () => {
       image: "/teamimg/janindua.jpg",
       linkedin: "https://linkedin.com/in/janinduamaraweera/",
       github: "https://github.com/Janindu02",
-      instagram: "https://instagram.com/janindu"
+      instagram: "https://instagram.com/janindu_a27/"
     },
     {
       name: "Nisil Liyanage",
       role: "Developer",
       image: "/teamimg/nisil.jpg",
       linkedin: "https://linkedin.com/in/nisil-liyanage/",
-      github: "https://github.com/nisilliyanagel",
+      github: "https://github.com/nisilliyanage",
       instagram: "https://instagram.com/nisilliyanage"
     },
     {
