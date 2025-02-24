@@ -267,49 +267,49 @@ const Team: React.FC = () => {
       name: "Senuji De Silva",
       role: "Team Lead",
       image: "/teamimg/senuji.jpg",
-      linkedin: "https://linkedin.com/in/senuji",
-      github: "https://github.com/senuji",
-      instagram: "https://instagram.com/senuji"
+      linkedin: "https://linkedin.com/in/senujidesilva/",
+      github: "https://github.com/SenujiDes",
+      instagram: "https://instagram.com/notintoyoutho"
     },
     {
       name: "Minsandi De Silva",
       role: "Developer",
       image: "/teamimg/minsandi.jpg",
-      linkedin: "https://linkedin.com/in/minsandi",
-      github: "https://github.com/minsandi",
-      instagram: "https://instagram.com/minsandi"
+      linkedin: "https://linkedin.com/in/minsandi-de-silva-3424552a7/",
+      github: "https://github.com/MinsandiDeSilva",
+      instagram: "https://instagram.com/min_siiiii"
     },
     {
       name: "Janindu Amaraweera",
       role: "Developer",
       image: "/teamimg/janindua.jpg",
-      linkedin: "https://linkedin.com/in/janindu",
-      github: "https://github.com/janindu",
+      linkedin: "https://linkedin.com/in/janinduamaraweera/",
+      github: "https://github.com/Janindu02",
       instagram: "https://instagram.com/janindu"
     },
     {
       name: "Nisil Liyanage",
       role: "Developer",
       image: "/teamimg/nisil.jpg",
-      linkedin: "https://linkedin.com/in/nisil",
-      github: "https://github.com/nisil",
-      instagram: "https://instagram.com/nisil"
+      linkedin: "https://linkedin.com/in/nisil-liyanage/",
+      github: "https://github.com/nisilliyanagel",
+      instagram: "https://instagram.com/nisilliyanage"
     },
     {
       name: "Minidu Thiranjaya",
       role: "Developer",
-      image: "/teamimg/minidu.jpg",
-      linkedin: "https://linkedin.com/in/minidu",
-      github: "https://github.com/minidu",
-      instagram: "https://instagram.com/minidu"
+      image: "/teamimg/minidu.png",
+      linkedin: "https://linkedin.com/in/minidu-thiranjaya-988113320/",
+      github: "https://github.com/NanayakkaraMiniduThiranjaya",
+      instagram: "https://instagram.com/minidu_thiranjaya2003"
     },
     {
       name: "Thisal Induwara",
       role: "Developer",
       image: "/teamimg/thisal.jpg",
-      linkedin: "https://linkedin.com/in/thisal",
-      github: "https://github.com/thisal",
-      instagram: "https://instagram.com/thisal"
+      linkedin: "https://linkedin.com/in/thisal-induwara-0b3555294/",
+      github: "https://github.com/Thisal03",
+      instagram: "https://instagram.com/thi.sal_indu.wara"
     }
   ];
 

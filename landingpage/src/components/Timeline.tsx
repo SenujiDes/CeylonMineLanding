@@ -126,23 +126,23 @@ const Timeline = () => {
 
   const timelineItems = [
     {
-      year: "2023",
+      year: "2024",
       title: "Project Inception",
       description:
         "Initial research and planning phase for Ceylon Mine. Established core team and project vision.",
     },
     {
-      year: "2024 Q1",
+      year: "2025 Q1",
       title: "Development Phase",
       description: "Building core features and establishing the technical infrastructure.",
     },
     {
-      year: "2024 Q2",
+      year: "2025 Q2",
       title: "Beta Testing",
       description: "Launching beta version with selected mining partners for real-world testing.",
     },
     {
-      year: "2024 Q3",
+      year: "2025 Q3",
       title: "Official Launch",
       description: "Full-scale deployment of Ceylon Mine platform across Sri Lanka.",
     },
