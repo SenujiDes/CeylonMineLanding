@@ -364,21 +364,23 @@ interface FAQItem {
 
 const BotModel: React.FC<BotModelProps> = ({ isSpeaking }) => {
   const { scene } = useGLTF("/models/orange_bot.glb");
-  const botRef = useRef<Object3D | null>(null); // Fixed useRef initialization
+  const botRef = useRef<Object3D | null>(null);
   const [scale, setScale] = useState<number>(1.5);
   const rotationSpeed = 0.05;
 
   useEffect(() => {
     const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 480) {
-        setScale(3);
-      } else if (width < 768) {
-        setScale(1.2);
-      } else if (width < 1024) {
-        setScale(1.4);
-      } else {
-        setScale(2.6);
+      if (typeof window !== "undefined") {
+        const width = window.innerWidth;
+        if (width < 480) {
+          setScale(3);
+        } else if (width < 768) {
+          setScale(1.2);
+        } else if (width < 1024) {
+          setScale(1.4);
+        } else {
+          setScale(2.6);
+        }
       }
     };
 
@@ -396,12 +398,7 @@ const BotModel: React.FC<BotModelProps> = ({ isSpeaking }) => {
   });
 
   return (
-    <primitive
-      ref={botRef}
-      object={scene}
-      position={[0, -1, -3]}
-      scale={scale}
-    />
+    <primitive ref={botRef} object={scene} position={[0, -1, -3]} scale={scale} />
   );
 };
 
@@ -409,13 +406,28 @@ const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
-  const synth = useRef<SpeechSynthesis>(window.speechSynthesis);
+  const synth = useRef<SpeechSynthesis | null>(null);
   const [voice, setVoice] = useState<SpeechSynthesisVoice | null>(null);
 
   useEffect(() => {
-    const voices = synth.current.getVoices();
-    const britishVoice = voices.find((v) => v.lang.includes("en-GB")) || voices[0];
-    setVoice(britishVoice);
+    if (typeof window !== "undefined") {
+      synth.current = window.speechSynthesis;
+
+      const updateVoice = () => {
+        const voices = synth.current?.getVoices() || [];
+        const britishVoice = voices.find((v) => v.lang.includes("en-GB")) || voices[0];
+        setVoice(britishVoice || null);
+      };
+
+      synth.current.onvoiceschanged = updateVoice;
+      updateVoice();
+
+      return () => {
+        if (synth.current) {
+          synth.current.onvoiceschanged = null;
+        }
+      };
+    }
   }, []);
 
   const faqItems: FAQItem[] = [
@@ -435,6 +447,8 @@ const FAQ: React.FC = () => {
   const displayedItems = faqItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   const handleSpeech = (answer: string, index: number) => {
+    if (!synth.current) return;
+
     synth.current.cancel();
     setOpenIndex(openIndex === index ? null : index);
 
@@ -449,7 +463,7 @@ const FAQ: React.FC = () => {
   };
 
   const stopSpeech = () => {
-    synth.current.cancel();
+    synth.current?.cancel();
     setIsSpeaking(false);
   };
 
@@ -497,21 +511,11 @@ const FAQ: React.FC = () => {
           )}
 
           <div className="flex justify-center items-center mt-6 space-x-4 text-white">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className="p-2 bg-gray-800 rounded-lg disabled:opacity-50 hover:bg-gray-700"
-            >
+            <button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1} className="p-2 bg-gray-800 rounded-lg disabled:opacity-50 hover:bg-gray-700">
               <ChevronLeft size={20} />
             </button>
-            <span className="text-sm md:text-lg font-semibold">
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages}
-              className="p-2 bg-gray-800 rounded-lg disabled:opacity-50 hover:bg-gray-700"
-            >
+            <span className="text-sm md:text-lg font-semibold">Page {currentPage} of {totalPages}</span>
+            <button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage === totalPages} className="p-2 bg-gray-800 rounded-lg disabled:opacity-50 hover:bg-gray-700">
               <ChevronRight size={20} />
             </button>
           </div>
