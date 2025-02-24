@@ -319,7 +319,7 @@ const Team: React.FC = () => {
   };
 
   return (
-    <section className="relative py-24 bg-black min-h-screen">
+    <section id="team"className="relative py-24 bg-black min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         {/* Header */}
         <div className="text-center mb-16">
